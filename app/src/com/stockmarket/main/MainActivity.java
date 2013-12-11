@@ -1,9 +1,6 @@
 package com.stockmarket.main;
 
 import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -13,6 +10,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
@@ -68,25 +66,15 @@ public class MainActivity extends Activity implements RestClient{
 		setContentView(R.layout.activity_main);
 		//TODO SALVAR E CARREGAR DE LOCAL SOURCE
 		
+		/*
 		stockarray = new ArrayList<Stock>();
 		
 		//TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 		stockarray.add(new Stock("GOOGLE", "GOOG",100, 10, 1, 10,0));
 		stockarray.add(new Stock("YAHOO", "YHO",100, 10, 1, 10,0));
 		stockarray.add(new Stock("AMAZON", "AMZN",100, 10, 1, 10,0));
-
-		ListView l = (ListView)findViewById(R.id.list);
-		l.setAdapter(new StockAdapter(this, R.id.empty, stockarray));
+		*/
 		
-		TextView v = (TextView)findViewById(R.id.empty);
-		if(stockarray.isEmpty())
-		{
-			v.setVisibility(View.VISIBLE);
-		}
-		else
-		{
-			v.setVisibility(View.GONE);
-		}
 		
 		CallServiceTask cst = new CallServiceTask(this);
 		cst.execute(url);
@@ -101,7 +89,35 @@ public class MainActivity extends Activity implements RestClient{
 
 	@Override
 	public void onBackgroundTaskCompleted(String result) {
-		// TODO Auto-generated method stub
+		if(result!= "" && result != null)
+		{
+			stockarray = new ArrayList<Stock>();
+			String[] s = result.split("\n");
+			for (String entry : s) {
+				String[] stockrow = entry.split(",");
+				stockrow[0] = stockrow[0].replaceAll("\"","");
+				stockrow[3] = stockrow[3].substring(5,stockrow[3].length()-3);
+				//TODO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX GET OPENPRICE and other shit
+				
+				Stock stk = new Stock(stockrow[0], stockrow[0], Float.parseFloat(stockrow[2]), Float.parseFloat(stockrow[1]), 0, Float.parseFloat(stockrow[3]), 0);
+				stockarray.add(stk);
+			}
+			
+			ListView l = (ListView)findViewById(R.id.list);
+			l.setAdapter(new StockAdapter(this, R.id.empty, stockarray));
+		}
+		
+		TextView v = (TextView)findViewById(R.id.empty);
+		
+		if(stockarray.isEmpty())
+		{
+			v.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			v.setVisibility(View.GONE);
+		}
+		
 		return;
 	}
 

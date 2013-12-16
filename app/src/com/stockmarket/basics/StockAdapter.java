@@ -2,23 +2,32 @@ package com.stockmarket.basics;
 
 import java.util.ArrayList;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.stockmarket.R;
+import com.stockmarket.main.StockManager;
 
 
 public class StockAdapter extends ArrayAdapter<Stock> {
 
 	private Context context;
-
-    public StockAdapter(Context context, int textViewResourceId, ArrayList<Stock> items) {
+	int position;
+	Application app;
+	
+    public StockAdapter(Context context, int textViewResourceId, ArrayList<Stock> items,int p, Application a) {
         super(context, textViewResourceId, items);
         this.context = context;
+        this.position = p;
+        app = a;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -28,7 +37,7 @@ public class StockAdapter extends ArrayAdapter<Stock> {
             view = inflater.inflate(R.layout.listviewrow, null);
         }
 
-        Stock item = getItem(position);
+        final Stock item = getItem(position);
         if (item!= null) {
 
         	TextView nameView = (TextView) view.findViewById(R.id.name);
@@ -51,6 +60,33 @@ public class StockAdapter extends ArrayAdapter<Stock> {
             	highView.setText(Float.toString(item.highprice));
             }
             
+			Button plusbtn = (Button)view.findViewById(R.id.plusbtn);
+			if(this.position!=1)
+			{
+				plusbtn.setVisibility(View.GONE);
+			}
+			
+			LinearLayout mystockslayout = (LinearLayout)view.findViewById(R.id.mystockslayout);
+			if(this.position!=0)
+			{
+				mystockslayout.setVisibility(View.GONE);
+			}
+			else
+			{
+				TextView mystocks = (TextView)view.findViewById(R.id.mystocks);
+				mystocks.setText(((Integer)item.owned).toString());
+			}
+			
+			plusbtn.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {					
+					((StockManager) app).addToMystocks(item);
+					Toast toast = Toast.makeText(context, "added to mystocks", Toast.LENGTH_SHORT);
+					toast.show();
+					return;
+				}
+			});
          }
 
         return view;

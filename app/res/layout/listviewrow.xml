@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip" >
     
 
 	<TextView
 	    android:id="@+id/name"
-	    android:layout_width="120dip"
+	    android:layout_width="100dip"
 	    android:layout_height="wrap_content"
 	    android:gravity="left"
 	/>
+	
+	
+	<LinearLayout
+	    android:id="@+id/mystockslayout"
+	    android:layout_width="50dip"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:gravity="left"
+	    >
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/mystockslbl"
+		    android:ellipsize="marquee"
+		    android:text="@string/stocks"
+		    android:gravity="top"
+		/>
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/mystocks"
+		    android:singleLine="true"
+		    android:ellipsize="marquee"
+		    android:gravity="bottom"
+		/>
+	</LinearLayout>
+	
 	
 	<LinearLayout
 	    android:layout_width="50dip"
@@ -87,4 +115,13 @@
 		    android:gravity="bottom"
 		/>
 	</LinearLayout>
+	
+	<Button
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/plusbtn"
+	    android:text="@string/plus"
+	    android:layout_marginLeft="15dp"
+	    >
+	</Button>
 </LinearLayout>

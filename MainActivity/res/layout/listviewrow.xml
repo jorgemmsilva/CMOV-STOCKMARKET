@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:orientation="horizontal"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip" >
+    
+
+	<TextView
+	    android:id="@+id/name"
+	    android:layout_width="120dip"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	/>
+	
+	<LinearLayout
+	    android:layout_width="50dip"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:gravity="right"
+	    >
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/variationlbl"
+		    android:ellipsize="marquee"
+		    android:text="@string/var"
+		    android:gravity="top"
+		/>
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/variation"
+		    android:singleLine="true"
+		    android:ellipsize="marquee"
+		    android:gravity="bottom"
+		/>
+	</LinearLayout>
+	
+	<LinearLayout
+	    android:layout_width="50dip"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:gravity="right"
+	    >
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/lowlbl"
+		    android:ellipsize="marquee"
+		    android:text="@string/low"
+		    android:gravity="top"
+		/>
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/low"
+		    android:singleLine="true"
+		    android:ellipsize="marquee"
+		    android:gravity="bottom"
+		/>
+	</LinearLayout>
+		
+	<LinearLayout
+	    android:layout_width="50dip"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:gravity="right"
+	    >
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/highlbl"
+		    android:ellipsize="marquee"
+		    android:text="@string/high"
+		    android:gravity="top"
+		/>
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:id="@+id/high"
+		    android:singleLine="true"
+		    android:ellipsize="marquee"
+		    android:gravity="bottom"
+		/>
+	</LinearLayout>
+</LinearLayout>

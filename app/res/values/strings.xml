@@ -7,7 +7,6 @@
     <string name="var">Var.</string>
     <string name="low">Low</string>
     <string name="high">High</string>
-    <string name="title_activity_explore">ExploreActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_tabs">TabsActivity</string>
     <string name="title_section1">My stocks</string>
@@ -16,4 +15,5 @@
 	<string name="plus">+</string>
 	<string name="minus">-</string>
 	<string name="stocks">Stocks</string>
+	<string name="more">More details</string>	 
 </resources>

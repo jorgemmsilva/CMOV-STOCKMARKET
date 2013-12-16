@@ -8,6 +8,7 @@ import android.app.Application;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -251,7 +252,9 @@ public class TabsActivity extends FragmentActivity implements
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1,
 							int arg2, long arg3) {
-						// TODO Auto-generated method stub
+						Intent i = new Intent(getActivity(), DetailsComp.class);
+						i.putExtra("name", stockarraycopy.get((int) arg3).name);
+						startActivity(i);
 						
 					}
 				});
@@ -304,7 +307,7 @@ public class TabsActivity extends FragmentActivity implements
 									Integer i = Integer.parseInt((String) stockstext.getText());
 									((StockManager) getActivity().getApplication()).setOwned(item.name,i);
 									
-									getItem(0);
+									
 								}
 							});
 							

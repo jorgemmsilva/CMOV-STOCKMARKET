@@ -1,6 +1,9 @@
 package com.stockmarket.basics;
 
 import java.io.Serializable;
+import java.util.Random;
+
+import android.graphics.Color;
 
 public class Stock implements Serializable{
 
@@ -17,6 +20,7 @@ public class Stock implements Serializable{
 	public float openprice;
 	public float variation;
 	public int owned;
+	public int color;
 	
 	public Stock (String name, String shortname, float highprice, float lowprice, float openprice, float variation ,  int owned){
 		this.name = name;
@@ -26,6 +30,10 @@ public class Stock implements Serializable{
 		this.openprice = openprice;
 		this.variation = variation;
 		this.owned = owned;
+		
+		Random c = new Random();		
+		this.color = Color.rgb(c.nextInt(256),c.nextInt(256),c.nextInt(256));
+		
 	}
 
 	

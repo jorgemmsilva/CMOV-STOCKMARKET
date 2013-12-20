@@ -2,6 +2,21 @@ package com.stockmarket.main;
 
 import java.util.Calendar;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
 import com.example.stockmarket.R;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
@@ -9,20 +24,6 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 import com.stockmarket.basics.CallServiceTask;
 import com.stockmarket.basics.RestClient;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.view.Gravity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 public class DetailsComp extends Activity implements RestClient {
 	String name;
@@ -32,6 +33,8 @@ public class DetailsComp extends Activity implements RestClient {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_details_comp);
 		
 		Intent i = getIntent();

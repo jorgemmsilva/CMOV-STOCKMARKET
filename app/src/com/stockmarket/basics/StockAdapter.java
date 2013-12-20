@@ -14,19 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.stockmarket.R;
-import com.stockmarket.main.StockManager;
 
 
 public class StockAdapter extends ArrayAdapter<Stock> {
 
 	private Context context;
-	int position;
+	int fragposition;
 	Application app;
 	
     public StockAdapter(Context context, int textViewResourceId, ArrayList<Stock> items,int p, Application a) {
         super(context, textViewResourceId, items);
         this.context = context;
-        this.position = p;
+        this.fragposition = p;
         app = a;
     }
 
@@ -60,14 +59,10 @@ public class StockAdapter extends ArrayAdapter<Stock> {
             	highView.setText(Float.toString(item.highprice));
             }
             
-			Button plusbtn = (Button)view.findViewById(R.id.plusbtn);
-			if(this.position!=1)
-			{
-				plusbtn.setVisibility(View.GONE);
-			}
+			
 			
 			LinearLayout mystockslayout = (LinearLayout)view.findViewById(R.id.mystockslayout);
-			if(this.position!=0)
+			if(fragposition!=0)
 			{
 				mystockslayout.setVisibility(View.GONE);
 			}
@@ -76,6 +71,14 @@ public class StockAdapter extends ArrayAdapter<Stock> {
 				TextView mystocks = (TextView)view.findViewById(R.id.mystocks);
 				mystocks.setText(((Integer)item.owned).toString());
 			}
+			
+			
+			Button plusbtn = (Button)view.findViewById(R.id.plusbtn);
+			if(fragposition!=1)
+			{
+				plusbtn.setVisibility(View.GONE);
+			}
+			
 			
 			plusbtn.setOnClickListener(new View.OnClickListener() {
 				
@@ -87,6 +90,7 @@ public class StockAdapter extends ArrayAdapter<Stock> {
 					return;
 				}
 			});
+			
          }
 
         return view;

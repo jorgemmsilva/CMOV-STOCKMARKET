@@ -1,15 +1,16 @@
-package com.stockmarket.main;
+package com.stockmarket.basics;
 
 import java.util.ArrayList;
-
-import com.stockmarket.basics.Stock;
+import java.util.Random;
 
 import android.app.Application;
+import android.graphics.Color;
 
 public class StockManager extends Application{
 
 	public ArrayList<Stock> mystocks ;
 	public ArrayList<Stock> explorestocks ;
+	public Boolean graphtype = true;
 	
 	public StockManager()
 	{
@@ -76,5 +77,57 @@ public class StockManager extends Application{
 				s.owned = i;
 		}		
 	}
+
+	public ArrayList<Float> getChartValues(int charttype) {
+		ArrayList<Float> values = new ArrayList<Float>();
+		int total = 0;
+		for( Stock s : mystocks)
+		{
+			if(charttype == 1){
+				values.add((float) s.owned);
+				total+=s.owned;
+			}
+			else
+			{
+				values.add(s.highprice*s.owned);
+				total+=s.highprice*s.owned;
+			}
+		}
+		
+		for( int i = 0; i < values.size(); ++i){
+			values.set(i,(values.get(i)/total)*360);
+		}
+		
+		return values;
+	}
+
+	public ArrayList<Integer> getChartColors() {
+		
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		for(Stock s : mystocks)
+		{
+			res.add(s.color);
+		}
+		
+		
+		return res;
+	}
+
+	public String getPercent(int index) {
+		int total = 0;
+		for( Stock s : mystocks)
+		{
+			total+=s.owned;
+		}
+		
+		Float res = (float) ((float)mystocks.get(index).owned/(float)total * 100);
+		return res.toString() + "%";
+	}
+
+	public void setGraphtype(Boolean g) {
+		graphtype = g;
+		
+	}
+
 	
 }

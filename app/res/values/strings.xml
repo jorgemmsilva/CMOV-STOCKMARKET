@@ -8,7 +8,7 @@
     <string name="low">Low</string>
     <string name="high">High</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_tabs">TabsActivity</string>
+    <string name="title_activity_tabs">StockManager</string>
     <string name="title_section1">My stocks</string>
     <string name="title_section2">Explore</string>
     <string name="title_section3">Graphs</string>
